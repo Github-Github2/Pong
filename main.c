@@ -23,7 +23,7 @@ int main() {
         clear();
         getmaxyx(stdscr, max_y, max_x);
 
-        // 🧮 Score
+        //  Score
         mvprintw(0, max_x/2 - 12, "Player 1: %d   Player 2: %d", score1, score2);
 
         // 🏓 Paddles (height = 3)
@@ -32,10 +32,10 @@ int main() {
             mvprintw(paddle2_y + i, max_x - 3, "|");
         }
 
-        // ⚽ Ball
+        //  Ball
         mvprintw(ball_y, ball_x, "O");
 
-        // 🎮 Input
+        //  Input
         int ch = getch();
 
         // Player 1 (W/S)
@@ -46,7 +46,7 @@ int main() {
         if (ch == KEY_UP && paddle2_y > 1) paddle2_y--;
         if (ch == KEY_DOWN && paddle2_y < max_y - 4) paddle2_y++;
 
-        // ⚽ Move ball
+        // Move ball
         ball_x += dir_x;
         ball_y += dir_y;
 
@@ -55,21 +55,21 @@ int main() {
             dir_y *= -1;
         }
 
-        // 🏓 Left paddle collision
+        //  Left paddle collision
         if (ball_x == 3) {
             if (ball_y >= paddle1_y && ball_y <= paddle1_y + 2) {
                 dir_x = 1;
             }
         }
 
-        // 🏓 Right paddle collision
+        //  Right paddle collision
         if (ball_x == max_x - 4) {
             if (ball_y >= paddle2_y && ball_y <= paddle2_y + 2) {
                 dir_x = -1;
             }
         }
 
-        // ❌ Missed left → Player 2 scores
+        //  Missed left → Player 2 scores
         if (ball_x <= 0) {
             score2++;
             ball_x = max_x / 2;
@@ -77,7 +77,7 @@ int main() {
             dir_x = 1;
         }
 
-        // ❌ Missed right → Player 1 scores
+        //  Missed right → Player 1 scores
         if (ball_x >= max_x - 1) {
             score1++;
             ball_x = max_x / 2;
